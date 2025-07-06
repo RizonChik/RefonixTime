@@ -1,0 +1,10 @@
+name: RefonixTime
+version: '1.0.0'
+main: ru.refontstudio.refonixtime.RefonixTime
+api-version: '1.16'
+description: "Плагин для получения времени в городе Российской Федерации"
+commands:
+  time:
+    description: "Эта команда позволяет узнать время"
+    usage: "/time <город>"
+    aliases: ["время"]
