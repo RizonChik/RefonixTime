@@ -56,7 +56,6 @@ public final class RefonixTime extends JavaPlugin {
             sender.sendMessage("§x§0§0§F§F§8§8§l/time " + cityDisplay + " +1 §7(на час вперед от МСК)");
             sender.sendMessage("§x§0§0§F§F§8§8§l/time " + cityDisplay + " -2 §7(на 2 часа назад от МСК)");
         }
-
         return true;
     }
 
