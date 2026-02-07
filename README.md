@@ -34,9 +34,3 @@
 ## Требования
 
 Minecraft 1.16.5 + Bukkit/Spigot/Paper
-
-## Автор
-
-RefonixStudio - [@rizonchik](https://github.com/r1zonchik)
-
-MIT License
