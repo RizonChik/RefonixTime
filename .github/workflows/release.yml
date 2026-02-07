@@ -1,0 +1,43 @@
+name: Build & Upload Jar to Releases
+
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout tag
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.release.tag_name }}
+          fetch-depth: 0
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "8"
+          cache: maven
+
+      - name: Build (Maven)
+        run: mvn -B -ntp -DskipTests package
+
+      - name: Find jar
+        id: jar
+        shell: bash
+        run: |
+          set -euo pipefail
+          JAR="$(ls -1 target/*.jar | grep -vE 'original-|sources|javadoc' | head -n 1)"
+          echo "jar=$JAR" >> "$GITHUB_OUTPUT"
+
+      - name: Upload jar to GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ github.event.release.tag_name }}
+          files: ${{ steps.jar.outputs.jar }}
